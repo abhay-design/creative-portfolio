@@ -5,7 +5,7 @@ import Bounded from "@/app/components/Bounded";
 import Heading from "@/app/components/Heading";
 import { PrismicRichText } from "@prismicio/react";
 import Button from "../../app/components/Button";
-import { PrismicNextImage } from "@prismicio/next";
+import Avtar from "./Avtar";
 
 /**
  * Props for `Biography`.
@@ -51,8 +51,8 @@ const Biography: FC<BiographyProps> = ({ slice }) => {
           linkField={slice.primary.button_link}
           label={slice.primary.button_text}
         />
-        <PrismicNextImage
-          field={slice.primary.avtar}
+        <Avtar
+          image={slice.primary.avtar}
           className="row-start-1 max-w-sm md:col-start-2 md:row-end-3"
         />
       </div>
