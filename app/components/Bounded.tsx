@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-type BoundedProps<T extends React.ElementType = "div" | "section"> = {
+type BoundedProps<T extends React.ElementType = "section"> = {
   as?: T;
   className?: string;
   children: React.ReactNode;

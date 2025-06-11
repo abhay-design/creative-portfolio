@@ -62,7 +62,7 @@ const Techlist: FC<TechlistProps> = ({ slice }) => {
       className="overflow-hidden"
       ref={component}
     >
-      <Bounded as="div">
+      <Bounded>
         <Heading size="xl" className="mb-8" as="h2">
           {slice.primary.heading}
         </Heading>
