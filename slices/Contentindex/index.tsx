@@ -21,7 +21,6 @@ const ContentIndex = async ({
 }: ContentindexProps): Promise<React.JSX.Element> => {
   const client = createClient("mycreative-portfolio1");
   const projects = await client.getAllByType("project_post");
-  console.log(projects);
 
   return (
     <Bounded
@@ -39,8 +38,8 @@ const ContentIndex = async ({
       </div>
       <ContentList
         items={projects}
-        viewMoreText={slice.items[0]?.view_more_text ?? "Read More"}
-        fallbackItemImage={slice.items[0]?.fallback_item_img ?? null}
+        viewMoreText={slice.items[0] ?? "Read More"}
+        fallbackItemImage={slice.items[0] ?? null}
       />
     </Bounded>
   );
