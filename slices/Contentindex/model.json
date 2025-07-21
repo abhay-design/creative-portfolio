@@ -1,0 +1,59 @@
+{
+  "id": "contentindex",
+  "type": "SharedSlice",
+  "name": "Contentindex",
+  "description": "Contentindex",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "content_type": {
+          "type": "Group",
+          "config": {
+            "label": "content type",
+            "repeat": true,
+            "fields": {
+              "view_more_text": {
+                "type": "Text",
+                "config": {
+                  "label": "view more text",
+                  "placeholder": ""
+                }
+              },
+              "fallback_item_img": {
+                "type": "Image",
+                "config": {
+                  "label": "fallback item img",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

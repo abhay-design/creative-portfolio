@@ -69,7 +69,10 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = TechlistSlice | BiographySlice;
+type PageDocumentDataSlicesSlice =
+  | ContentindexSlice
+  | TechlistSlice
+  | BiographySlice;
 
 /**
  * Content for Page documents
@@ -129,6 +132,105 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+type ProjectPostDocumentDataSlicesSlice = TextBlockSlice;
+
+/**
+ * Content for Project Post documents
+ */
+interface ProjectPostDocumentData {
+  /**
+   * title field in *Project Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_post.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * date field in *Project Post*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_post.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+
+  /**
+   * hover img field in *Project Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_post.hover_img
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hover_img: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Project Post*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_post.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProjectPostDocumentDataSlicesSlice> /**
+   * Meta Title field in *Project Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: project_post.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Project Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: project_post.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Project Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_post.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+
+/**
+ * Project Post document from Prismic
+ *
+ * - **API ID**: `project_post`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectPostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectPostDocumentData>,
+    "project_post",
+    Lang
+  >;
 
 /**
  * Item in *Settings → Nav item*
@@ -294,6 +396,7 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | HomepageDocument
   | PageDocument
+  | ProjectPostDocument
   | SettingsDocument;
 
 /**
@@ -385,6 +488,98 @@ type BiographySliceVariation = BiographySliceDefault;
 export type BiographySlice = prismic.SharedSlice<
   "biography",
   BiographySliceVariation
+>;
+
+/**
+ * Item in *Contentindex → Default → Primary → content type*
+ */
+export interface ContentindexSliceDefaultPrimaryContentTypeItem {
+  /**
+   * view more text field in *Contentindex → Default → Primary → content type*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contentindex.default.primary.content_type[].view_more_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  view_more_text: prismic.KeyTextField;
+
+  /**
+   * fallback item img field in *Contentindex → Default → Primary → content type*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contentindex.default.primary.content_type[].fallback_item_img
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  fallback_item_img: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Contentindex → Default → Primary*
+ */
+export interface ContentindexSliceDefaultPrimary {
+  /**
+   * Heading field in *Contentindex → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contentindex.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * content type field in *Contentindex → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contentindex.default.primary.content_type[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  content_type: prismic.GroupField<
+    Simplify<ContentindexSliceDefaultPrimaryContentTypeItem>
+  >;
+
+  /**
+   * Description field in *Contentindex → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contentindex.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Contentindex Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentindexSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContentindexSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Contentindex*
+ */
+type ContentindexSliceVariation = ContentindexSliceDefault;
+
+/**
+ * Contentindex Shared Slice
+ *
+ * - **API ID**: `contentindex`
+ * - **Description**: Contentindex
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentindexSlice = prismic.SharedSlice<
+  "contentindex",
+  ContentindexSliceVariation
 >;
 
 /**
@@ -529,6 +724,36 @@ export type TechlistSlice = prismic.SharedSlice<
   TechlistSliceVariation
 >;
 
+/**
+ * Default variation for TextBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *TextBlock*
+ */
+type TextBlockSliceVariation = TextBlockSliceDefault;
+
+/**
+ * TextBlock Shared Slice
+ *
+ * - **API ID**: `text_block`
+ * - **Description**: TextBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextBlockSlice = prismic.SharedSlice<
+  "text_block",
+  TextBlockSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -556,6 +781,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      ProjectPostDocument,
+      ProjectPostDocumentData,
+      ProjectPostDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavItemItem,
@@ -564,6 +792,11 @@ declare module "@prismicio/client" {
       BiographySliceDefaultPrimary,
       BiographySliceVariation,
       BiographySliceDefault,
+      ContentindexSlice,
+      ContentindexSliceDefaultPrimaryContentTypeItem,
+      ContentindexSliceDefaultPrimary,
+      ContentindexSliceVariation,
+      ContentindexSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
@@ -573,6 +806,9 @@ declare module "@prismicio/client" {
       TechlistSliceDefaultPrimary,
       TechlistSliceVariation,
       TechlistSliceDefault,
+      TextBlockSlice,
+      TextBlockSliceVariation,
+      TextBlockSliceDefault,
     };
   }
 }
