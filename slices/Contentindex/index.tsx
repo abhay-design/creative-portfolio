@@ -1,5 +1,5 @@
 import React from "react";
-import { Content, createClient } from "@prismicio/client";
+import { Content, isFilled, createClient } from "@prismicio/client";
 import { SliceComponentProps, JSXMapSerializer } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import Heading from "@/app/components/Heading";
@@ -30,12 +30,14 @@ const ContentIndex = async ({
       <Heading size="xl" className="mb-8">
         {slice.primary.heading}
       </Heading>
-      <div>
-        <PrismicRichText
-          field={slice.primary.description}
-          components={components}
-        />
-      </div>
+      {isFilled.richText(slice.primary.description) && (
+        <div>
+          <PrismicRichText
+            field={slice.primary.description}
+            components={components}
+          />
+        </div>
+      )}
       <ContentList
         items={projects}
         viewMoreText={slice.items[0] ?? "Read More"}

@@ -215,7 +215,6 @@ interface ProjectPostDocumentData {
   meta_image: prismic.ImageField<never>;
 }
 
-
 /**
  * Project Post document from Prismic
  *
@@ -491,31 +490,6 @@ export type BiographySlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *Contentindex → Default → Primary → content type*
- */
-export interface ContentindexSliceDefaultPrimaryContentTypeItem {
-  /**
-   * view more text field in *Contentindex → Default → Primary → content type*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: contentindex.default.primary.content_type[].view_more_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  view_more_text: prismic.KeyTextField;
-
-  /**
-   * fallback item img field in *Contentindex → Default → Primary → content type*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: contentindex.default.primary.content_type[].fallback_item_img
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  fallback_item_img: prismic.ImageField<never>;
-}
-
-/**
  * Primary content in *Contentindex → Default → Primary*
  */
 export interface ContentindexSliceDefaultPrimary {
@@ -530,18 +504,6 @@ export interface ContentindexSliceDefaultPrimary {
   heading: prismic.KeyTextField;
 
   /**
-   * content type field in *Contentindex → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: contentindex.default.primary.content_type[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  content_type: prismic.GroupField<
-    Simplify<ContentindexSliceDefaultPrimaryContentTypeItem>
-  >;
-
-  /**
    * Description field in *Contentindex → Default → Primary*
    *
    * - **Field Type**: Rich Text
@@ -550,6 +512,36 @@ export interface ContentindexSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
+
+  /**
+   * content type field in *Contentindex → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: contenttype
+   * - **API ID Path**: contentindex.default.primary.content_type
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  content_type: prismic.SelectField<"project" | "blog">;
+
+  /**
+   * view more text field in *Contentindex → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: view more text
+   * - **API ID Path**: contentindex.default.primary.view_more_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  view_more_text: prismic.KeyTextField;
+
+  /**
+   * fallback item img field in *Contentindex → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contentindex.default.primary.fallback_item_img
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  fallback_item_img: prismic.ImageField<never>;
 }
 
 /**
@@ -793,7 +785,6 @@ declare module "@prismicio/client" {
       BiographySliceVariation,
       BiographySliceDefault,
       ContentindexSlice,
-      ContentindexSliceDefaultPrimaryContentTypeItem,
       ContentindexSliceDefaultPrimary,
       ContentindexSliceVariation,
       ContentindexSliceDefault,

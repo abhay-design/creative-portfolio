@@ -19,30 +19,6 @@
             "placeholder": ""
           }
         },
-        "content_type": {
-          "type": "Group",
-          "config": {
-            "label": "content type",
-            "repeat": true,
-            "fields": {
-              "view_more_text": {
-                "type": "Text",
-                "config": {
-                  "label": "view more text",
-                  "placeholder": ""
-                }
-              },
-              "fallback_item_img": {
-                "type": "Image",
-                "config": {
-                  "label": "fallback item img",
-                  "constraint": {},
-                  "thumbnails": []
-                }
-              }
-            }
-          }
-        },
         "description": {
           "type": "StructuredText",
           "config": {
@@ -50,6 +26,32 @@
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em"
+          }
+        },
+        "content_type": {
+          "type": "Select",
+          "config": {
+            "label": "content type",
+            "placeholder": "contenttype",
+            "options": [
+              "project",
+              "blog"
+            ]
+          }
+        },
+        "view_more_text": {
+          "type": "Text",
+          "config": {
+            "label": "view more text",
+            "placeholder": "view more text"
+          }
+        },
+        "fallback_item_img": {
+          "type": "Image",
+          "config": {
+            "label": "fallback item img",
+            "constraint": {},
+            "thumbnails": []
           }
         }
       },
