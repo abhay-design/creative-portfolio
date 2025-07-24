@@ -79,6 +79,17 @@
           "allowText": true,
           "repeat": false
         }
+      },
+      "linkdin_link": {
+        "type": "Link",
+        "config": {
+          "label": "linkdin link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
       }
     },
     "Seo and Meta Data": {

@@ -342,6 +342,23 @@ interface SettingsDocumentData {
     unknown,
     prismic.FieldState,
     never
+  >;
+
+  /**
+   * linkdin link field in *Settings*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.linkdin_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  linkdin_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
   > /**
    * Meta Title field in *Settings*
    *
